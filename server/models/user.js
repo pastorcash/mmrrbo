@@ -6,9 +6,22 @@ const _ = require('lodash');
 const bcrypt = require('bcryptjs');
 
 const UserSchema = new mongoose.Schema({
-  name: {
+  userName: {
     type: String,
-    required: false,
+    required: [true, 'Username is required.'],
+    unique: true,
+    trim: true,
+    minlength: 6,
+  },
+  firstName: {
+    type: String,
+    required: [true, 'First name is required.'],
+    trim: true,
+    minlength: 1,
+  },
+  lastName: {
+    type: String,
+    required: [true, 'Last name is required.'],
     trim: true,
     minlength: 1,
   },
@@ -29,6 +42,30 @@ const UserSchema = new mongoose.Schema({
     required: [true, 'Password is required'],
     minlength: 6,
   },
+  roles: {
+    type: Array,
+    default: ['teacher'],
+  },
+  employmentType: {
+    type: String,
+    required: false,
+    // validate: {
+    //   isAsync: true,
+    //   validator: validator.isIn(['W-2', '1099']),
+    //   message: `{VALUE} is not a valid option.`,
+    // },
+  },
+  status: {
+    type: String,
+    required: true,
+    trim: true,
+    default: 'active',
+    // validate: {
+    //   isAsync: true,
+    //   validator: validator.isIn(['active', 'hold', 'archive']),
+    //   message: `{VALUE} is not a valid option.`,
+    // },
+  },
   tokens: [{
     access: {
       type: String,
@@ -39,15 +76,25 @@ const UserSchema = new mongoose.Schema({
       required: true,
     },
   }],
-
+  createdAt: {
+    type: Number,
+    required: false,
+    default: null,
+  },
+  updatedAt: {
+    type: Number,
+    required: false,
+    default: null,
+  },
 });
 
 // --------------- INSTANCE Methods --------------- //
+// **** Update Below
 UserSchema.methods.toJSON = function () {
   const user = this;
   const userObject = user.toObject();
 
-  return _.pick(userObject, ['_id', 'email']);
+  return _.pick(userObject, ['_id', 'userName', 'firstName', 'lastName', 'email']);
 };
 
 UserSchema.methods.generateAuthToken = function () {
@@ -73,6 +120,26 @@ UserSchema.methods.removeToken = function (token) {
 };
 
 // ---------------- MODEL Methods ---------------- //
+ UserSchema.statics.findByUserName = function (userName, password) {
+  const User = this;
+
+  return User.findOne({userName}).then((user) => {
+    if (!user) {
+      return Promise.reject();
+    }
+
+    return new Promise((resolve, reject) => {
+      bcrypt.compare(password, user.password, (err, res) => {
+        if (res) {
+          return resolve(user);
+        }
+        reject();
+      });
+    });
+  });
+};
+
+
 UserSchema.statics.findByToken = function (token) {
   const User = this;
   let decoded;
@@ -108,6 +175,8 @@ UserSchema.statics.findByCredentials = function (email, password) {
     });
   });
 };
+
+// UserSchema.statics.fullName
 
 UserSchema.pre('save', function (next) {
   const user = this;

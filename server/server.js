@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 // ----- POST /users route ---- // ***
 app.post('/users', async (req, res) => {
   try {
-    const body = _.pick(req.body, ['email', 'password']);
+    const body = _.pick(req.body, ['userName', 'firstName', 'lastName', 'email', 'password', 'roles', 'employmentType', 'status']);
     const user = new User(body);
     await user.save();
     const token = await user.generateAuthToken();

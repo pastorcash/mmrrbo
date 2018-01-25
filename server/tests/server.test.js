@@ -46,18 +46,24 @@ describe('GET /users/me', () => {
 // ----- POST /users ----- //
 describe('POST /users', () => {
   it('Should create a user', (done) => {
-    var email = 'example@example.com';
-    var password = '123mnb!';
+    let userName = 'userName123';
+    let firstName = 'Johnny';
+    let lastName = 'Quest';
+    let email = 'example@example.com';
+    let password = '123mnb!';
+    let roles = ['teacher'];
+    let employmentType = '1099';
+    let status = 'archive';
 
     request(app)
       .post('/users')
-      .send({ email, 
-              password })
+      .send({ userName, firstName, lastName, email, password, roles, employmentType, status })
       .expect(200)
       .expect((res) => {
         expect(res.headers['x-auth']).toExist();
         expect(res.body._id).toExist();
         expect(res.body.email).toBe(email);
+        expect(res.body.userName).toBe(userName);
       })
       .end((err) => {
         if (err) {

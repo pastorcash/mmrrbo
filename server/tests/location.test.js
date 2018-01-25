@@ -26,7 +26,7 @@ describe('/POST Locations', () => {
     let zipCode = '12345';
     let locationType = 'Franchise';
     let status = 'archive';
-    const locationObject = { name, street, city, state, zipCode, locationType, status}
+    const locationObject = {name, street, city, state, zipCode, locationType, status}
     request(app)
       .post('/location')
       .send(locationObject)
