@@ -89,12 +89,12 @@ const UserSchema = new mongoose.Schema({
 });
 
 // --------------- INSTANCE Methods --------------- //
-// **** Update Below
 UserSchema.methods.toJSON = function () {
   const user = this;
   const userObject = user.toObject();
 
-  return _.pick(userObject, ['_id', 'userName', 'firstName', 'lastName', 'email']);
+// add employment type (?)
+  return _.pick(userObject, ['_id', 'userName', 'firstName', 'lastName', 'email', 'roles', 'status']);
 };
 
 UserSchema.methods.generateAuthToken = function () {

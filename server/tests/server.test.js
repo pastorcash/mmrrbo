@@ -116,7 +116,7 @@ describe('POST /users/login', () => {
     request(app)
       .post('/users/login')
       .send({
-        email: users[1].email,
+        userName: users[1].userName,
         password: users[1].password,
       })
       .expect(200)

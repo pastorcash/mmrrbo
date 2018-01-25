@@ -35,9 +35,10 @@ app.get('/users/me', authenticate, (req, res) => {
 
 // ----- POST /users/login {email, password} ----- //
 app.post('/users/login', async (req, res) => {
-  const body = _.pick(req.body, ['email', 'password']);
+  const body = _.pick(req.body, ['userName', 'password']);
 
-  await User.findByCredentials(body.email, body.password).then((user) => {
+  await User.findByUserName(body.userName, body.password).then((user) => { 
+  // await User.findByCredentials(body.email, body.password).then((user) => {
     return user.generateAuthToken().then((token) => {
       res.header('x-auth', token).send(user);
     });
@@ -68,15 +69,39 @@ app.post('/location', async (req, res) => {
   }
 });
 
-// ----- GET /location ----- //
-app.get('./location', (req, res) => {
-
+// ----- GET /location/id ----- //
+app.get('/location/:id', authenticate, async (req, res) => {
+  let id = req.params.id;
+try {
+  if (!ObjectID.isValid(id)) {
+    throw new Error(); // trigger catch block below.
+  }
+  // now Query the db using find by the id
+  const location = await Location.find({_id: id});
+  res.send(location);
+} catch (e) {
+  res.status(400).send();
+}
 });
 
-// ----- Get /locations (LIST) ----- // 
-app.get('/location/list', async (req, res) => {
-
+// ----- GET /locations (LIST) ----- // 
+app.get('/location', async (req, res) => {
+  try {
+    const locations = await Location.find({});
+    res.send({locations});
+  } catch (e) {
+    res.status(400).send(e);
+  }
 });
+
+// app.get('/location', (req, res) => {
+//   Location.find({}).then((locations) => {
+//     res.send({locations});
+//   }, (e) => {
+//     res.status(400).send(e);
+//   });
+// });
+
 
 // ----- Activate listener ----- //
 app.listen(port, () => {
