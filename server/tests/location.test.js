@@ -114,7 +114,7 @@ describe('GET /location/id', (req, res) => {
     });
   });
 
-  it('Should return unauthorized if no token', (done) => {
+  it('Should return a 401 if not authenticated', (done) => {
     let token = null;
     let locationId = locations[0]._id;
 

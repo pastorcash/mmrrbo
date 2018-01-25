@@ -163,7 +163,7 @@ describe('POST /users/login', () => {
 });
 
 // ----- DELETE /users/me/token (logout) -----//
-describe('DELETE /users/me/token', () => {
+describe('DELETE /users/me/token (LOGOUT)', () => {
   it('Should remove auth token on logout', (done) => {
     request(app)
       .delete('/users/me/token')

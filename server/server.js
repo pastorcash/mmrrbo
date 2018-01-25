@@ -36,16 +36,24 @@ app.get('/users/me', authenticate, (req, res) => {
 // ----- POST /users/login {email, password} ----- //
 // *** FIX THE AWAIT (trailing then ...)
 app.post('/users/login', async (req, res) => {
-  const body = _.pick(req.body, ['userName', 'password']);
+  try {
+    const body = _.pick(req.body, ['userName', 'password']);
+    const user = await User.findByUserName(body.userName, body.password);
+    const token = await user.generateAuthToken();
 
-  await User.findByUserName(body.userName, body.password).then((user) => { 
-  // await User.findByCredentials(body.email, body.password).then((user) => {
-    return user.generateAuthToken().then((token) => {
-      res.header('x-auth', token).send(user);
-    });
-  }).catch((e) => {
+    return res.header('x-auth',token).send(user);
+
+  } catch (e) {
     res.status(400).send(e);
-  });
+  }
+  // await User.findByUserName(body.userName, body.password).then((user) => { 
+  // // await User.findByCredentials(body.email, body.password).then((user) => {
+  //   return user.generateAuthToken().then((token) => {
+  //     res.header('x-auth', token).send(user);
+  //   });
+  // }).catch((e) => {
+  //   res.status(400).send(e);
+  // });
 });
 
 // ---- DELETE /users/me/token (Logout -----??
