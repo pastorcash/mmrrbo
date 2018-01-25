@@ -180,6 +180,7 @@ UserSchema.statics.findByCredentials = function (email, password) {
 
 UserSchema.pre('save', function (next) {
   const user = this;
+  //location.updatedAt = new Date().getTime();
 
   if (user.isModified('password')) {
     bcrypt.genSalt(10, (err, salt) => {

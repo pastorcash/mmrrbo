@@ -4,11 +4,13 @@ const request = require('supertest');
 // const {ObjectID} = require('mongodb');
 
 const {app} = require('./../server');
+// const {User} = require('./../models/user');
 const {Location} = require('./../models/location');
 const {
   locations,
   populateLocations,
 } = require('./seed/location.seed');
+const {users} = require('./seed/seed');
 
 // Test lifecycle code:
 // ======================
@@ -69,3 +71,66 @@ describe('/POST Locations', () => {
       });  
   });
 });
+
+describe('GET /Location list', () => {
+//   // *** MODIFY this once delineation by user has been added
+  it('Should return a list of all locations', (done) => {
+    request(app)
+      .get('/location')
+      .expect(200)
+      .expect((res) => {
+        expect(res.body.locations.length).toBe(2);
+      })
+      .end((err) => {
+        if (err) {
+          return done(err);
+        }
+      done();
+    });
+  });
+});
+
+describe('GET /location/id', (req, res) => {
+  it('Should return valid location by id', (done) => {
+    // First "login" with a valid user and Rtv token for authentication
+    // then test location. Note (User[0] has been logged out - so no token exists.)
+    let fName = 'First Location';
+    let token = users[1].tokens[0].token;
+    let locationId = locations[0]._id;
+
+    request(app)
+      .get(`/location/${locationId}`)
+      .set('x-auth', token)
+      .expect(200)
+      .expect((res) => {
+        expect(res.body._id).toExist();
+        expect(res.body.name).toBe(fName);
+      })
+      .end((err) => {
+        if (err) {
+          return done(err);
+        }
+      done();
+    });
+  });
+
+  it('Should return unauthorized if no token', (done) => {
+    let token = null;
+    let locationId = locations[0]._id;
+
+    request(app)
+      .get(`/location/${locationId}`)
+      .set('x-auth', token)
+      .expect(401)
+      .expect((res) => {
+        expect(res.body.name).toNotExist();
+      })
+      .end((err) => {
+        if (err) {
+          return done(err);
+        }
+      done();
+    });
+  });
+});
+

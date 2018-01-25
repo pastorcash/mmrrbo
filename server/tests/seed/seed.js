@@ -12,7 +12,7 @@ const userTwoId = new ObjectID();
 const users = [{
   _id: userOneId,
   userName: 'JonDoe',
-  firstName: 'Joh',
+  firstName: 'Jon',
   lastName: 'Doe',
   email: 'JDoe880@gmail.com',
   password: 'userOnePass',
@@ -23,6 +23,8 @@ const users = [{
     access: 'auth',
     token: jwt.sign({_id: userOneId, access: 'auth'}, process.env.JWT_SECRET).toString(),
   }],
+  createdAt:  new Date().getTime(),
+  updatedAt:  new Date().getTime(),
 }, {
   _id: userTwoId,
   userName: 'JaneDoe',
@@ -37,6 +39,8 @@ const users = [{
     access: 'auth',
     token: jwt.sign({ _id: userTwoId, access: 'auth' }, process.env.JWT_SECRET).toString(),
   }],
+  createdAt:  new Date().getTime(),
+  updatedAt:  new Date().getTime(),
 }];
 
 

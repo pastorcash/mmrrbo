@@ -34,6 +34,7 @@ app.get('/users/me', authenticate, (req, res) => {
 });
 
 // ----- POST /users/login {email, password} ----- //
+// *** FIX THE AWAIT (trailing then ...)
 app.post('/users/login', async (req, res) => {
   const body = _.pick(req.body, ['userName', 'password']);
 
@@ -62,6 +63,7 @@ app.post('/location', async (req, res) => {
   try {
     const body = _.pick(req.body, ['name', 'street', 'city', 'state', 'zipCode', 'locationType', 'status']);
     const location = new Location(body);
+    location.createdAt = new Date().getTime();
     await location.save();
     res.send(location);
   } catch (e) {
@@ -77,7 +79,7 @@ try {
     throw new Error(); // trigger catch block below.
   }
   // now Query the db using find by the id
-  const location = await Location.find({_id: id});
+  const location = await Location.findOne({_id: id});
   res.send(location);
 } catch (e) {
   res.status(400).send();
@@ -93,15 +95,6 @@ app.get('/location', async (req, res) => {
     res.status(400).send(e);
   }
 });
-
-// app.get('/location', (req, res) => {
-//   Location.find({}).then((locations) => {
-//     res.send({locations});
-//   }, (e) => {
-//     res.status(400).send(e);
-//   });
-// });
-
 
 // ----- Activate listener ----- //
 app.listen(port, () => {
