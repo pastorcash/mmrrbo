@@ -20,7 +20,7 @@ const locations = [{
   status: 'active',
   createdAt: new Date().getTime(),
   latitude: null,
-  longitude: null
+  longitude: null,
 }, {
   _id: locationTwoId,
   name: 'Second Location',
@@ -32,7 +32,7 @@ const locations = [{
   status: 'active',
   createdAt: new Date().getTime(),
   latitude: null,
-  longitude: null
+  longitude: null,
 }];
 
 

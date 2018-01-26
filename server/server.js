@@ -8,6 +8,7 @@ const {ObjectID} = require('mongodb');
 const {mongoose} = require('./db/mongoose');
 const {User} = require('./models/user');
 const {Location} = require('./models/location');
+const {Student} = require('./models/student');
 const {authenticate} = require('./middleware/authenticate');
 
 const app = express();
@@ -15,6 +16,7 @@ const port = process.env.PORT;
 
 app.use(bodyParser.json());
 
+// ------------------------------- USERS ------------------------------------- //
 // ----- POST /users route ---- // ***
 app.post('/users', async (req, res) => {
   try {
@@ -46,14 +48,6 @@ app.post('/users/login', async (req, res) => {
   } catch (e) {
     res.status(400).send(e);
   }
-  // await User.findByUserName(body.userName, body.password).then((user) => { 
-  // // await User.findByCredentials(body.email, body.password).then((user) => {
-  //   return user.generateAuthToken().then((token) => {
-  //     res.header('x-auth', token).send(user);
-  //   });
-  // }).catch((e) => {
-  //   res.status(400).send(e);
-  // });
 });
 
 // ---- DELETE /users/me/token (Logout -----??
@@ -66,6 +60,7 @@ app.delete('/users/me/token', authenticate, async (req, res) => {
   }
 });
 
+// ----------------------------- LOCATIONS ----------------------------------- //
 // ----- POST /location ----- //
 app.post('/location', async (req, res) => {
   try {
@@ -103,6 +98,21 @@ app.get('/location', async (req, res) => {
     res.status(400).send(e);
   }
 });
+
+// ------------------------------ STUDENTS ----------------------------------- //
+// ----- POST /student ----- //
+app.post('/student', async (req, res) => {
+  try {
+    const body = _.pick(req.body, ['firstName', 'lastName', 'gender', 'school', 'grade',  'status', 'highestAchievedLeve', 'notes']);
+    const student = new Student(body);
+    student.createdAt = new Date().getTime();
+    await student.save();
+    res.send(student);
+  } catch (e) {
+    res.status(400).send();
+  }
+});
+
 
 // ----- Activate listener ----- //
 app.listen(port, () => {
