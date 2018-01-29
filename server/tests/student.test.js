@@ -1,28 +1,25 @@
 // --- Mocha Server Test file
 const expect = require('expect');
 const request = require('supertest');
-const {app} = require('./../server');
 
+const {app} = require('./../server');
 const {Student} = require('./../models/student');
-const {
-// students,
-  populateStudents,
-} = require('./seed/student.seed');
-// const {users} = require('./seed/seed');
+const {students,populateStudents} = require('./seed/student.seed');
 
 // Test lifecycle code:
 // ======================
 
 // Now clear collection and then repopluate with seed data
 //  before EACH execution of EACH Test.
+
 beforeEach(populateStudents);
 
 describe('/POST Students', () => {
   it('Should create a student', (done) => {
-    let firstName = 'Johnny';
-    let lastName = 'Quest'
+    let firstName = 'Race';
+    let lastName = 'Bannon'
     let status = 'active';
-    const studentObject = {name, status}
+    const studentObject = { firstName, lastName, status }
     request(app)
       .post('/student')
       .send(studentObject)
@@ -32,12 +29,12 @@ describe('/POST Students', () => {
         expect(res.body.firstName).toBe(firstName);
         expect(res.body.lastName).toBe(lastName);
       })
-      .end((err) => {
+      .end((err, res) => {
         if (err) {
           return done(err);
         }
 
-        Student.find({name}).then((students) => {
+        Student.find({ firstName, lastName }).then((students) => {
           expect(students.length).toBe(1);
           expect(students[0].firstName).toBe(firstName);
           expect(students[0].lastName).toBe(lastName);

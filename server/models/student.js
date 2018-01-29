@@ -81,11 +81,11 @@ StudentSchema.methods.toJSON = function () {
   return _.pick(studentObject, ['_id', 'firstName', 'lastName', 'status']);
 };
 
-StudentSchema.methods.toJSONfull = function () {
-  const student = this;
-  const studentObject = student.toObject();
-  return _.pick(studentObject, ['_id', 'firstName', 'lastName', 'gender', 'dateOfBirth', 'registrationDate', 'classStartDate', 'school', 'grade',  'status', 'highestAchievedLeve', 'notes']);
-};
+// StudentSchema.methods.toJSONfull = function () {
+//   const student = this;
+//   const studentObject = student.toObject();
+//   return _.pick(studentObject, ['_id', 'firstName', 'lastName', 'gender', 'dateOfBirth', 'registrationDate', 'classStartDate', 'school', 'grade',  'status', 'highestAchievedLeve', 'notes']);
+// };
 
 // ---------------- MODEL Methods ----------------- //
 

@@ -3,7 +3,7 @@
 const {ObjectID} = require('mongodb');
 
 
-const {student} = require('./../../models/student');
+const {Student} = require('./../../models/student');
 
 // Create and seed two users
 const studentOneId = new ObjectID();
@@ -42,10 +42,10 @@ const students = [{
 
 
 // Now populate documents/data tables
-const populatestudents = (done) => {
-  student.remove({}).then(() => {
-    var studentOne = new student(students[0]).save();
-    var studentTwo = new student(students[1]).save();
+const populateStudents = (done) => {
+  Student.remove({}).then(() => {
+    var studentOne = new Student(students[0]).save();
+    var studentTwo = new Student(students[1]).save();
 
     return Promise.all([studentOne, studentTwo]);
   }).then(() => done());
@@ -53,5 +53,5 @@ const populatestudents = (done) => {
 
 module.exports = {
   students,
-  populatestudents,
+  populateStudents,
 };

@@ -37,7 +37,7 @@ describe('/POST Locations', () => {
         expect(res.body._id).toExist();
         expect(res.body.name).toBe(name);
       })
-      .end((err) => {
+      .end((err, res) => {
         if (err) {
           return done(err);
         }
@@ -63,7 +63,7 @@ describe('/POST Locations', () => {
       .post('/location')
       .send(locationObject)
       .expect(400)
-      .end((err) => {
+      .end((err, res) => {
         if (err) {
           return done(err);
         }
@@ -81,7 +81,7 @@ describe('GET /Location list', () => {
       .expect((res) => {
         expect(res.body.locations.length).toBe(2);
       })
-      .end((err) => {
+      .end((err, res) => {
         if (err) {
           return done(err);
         }
@@ -106,7 +106,7 @@ describe('GET /location/id', (req, res) => {
         expect(res.body._id).toExist();
         expect(res.body.name).toBe(fName);
       })
-      .end((err) => {
+      .end((err, res) => {
         if (err) {
           return done(err);
         }
@@ -125,7 +125,7 @@ describe('GET /location/id', (req, res) => {
       .expect((res) => {
         expect(res.body.name).toNotExist();
       })
-      .end((err) => {
+      .end((err, res) => {
         if (err) {
           return done(err);
         }
