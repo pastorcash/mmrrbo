@@ -90,7 +90,7 @@ describe('GET /Location list', () => {
   });
 });
 
-describe('GET /location/id', (req, res) => {
+describe('GET /location/:id', (req, res) => {
   it('Should return valid location by id', (done) => {
     // First "login" with a valid user and Rtv token for authentication
     // then test location. Note (User[0] has been logged out - so no token exists.)

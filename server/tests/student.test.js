@@ -43,3 +43,36 @@ describe('/POST Students', () => {
       });
   });
 });
+
+describe('GET /Student list', () => {
+  it('Should return a list of all students', (done) => {
+    request(app)
+      .get('/student')
+      .expect(200)
+      .expect((res) => {
+        expect(res.body.students.length).toBe(2);
+      })
+      .end((err, res) => {
+        if (err) {
+          return done(err);
+        }
+        done();
+      });
+  });
+
+  it('Should return a list of all students by location', (done) => {
+    // *** Add parameter to optionally pass in location ID
+    // request(app)
+    //   .get('/student')
+    //   .expect(200)
+    //   .expect((res) => {
+    //     expect(res.body.students.length).toBe(2);
+    //   })
+    //   .end((err, res) => {
+    //     if (err) {
+    //       return done(err);
+    //     }
+        done();
+      // });
+  });
+});

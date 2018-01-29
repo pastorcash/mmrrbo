@@ -113,6 +113,17 @@ app.post('/student', async (req, res) => {
   }
 });
 
+// ----- GET /student (LIST) ----- // 
+// *** Add optional location parameter
+app.get('/student', async (req, res) => {
+  try {
+    const students = await Student.find({});
+    res.send({ students });
+  } catch (e) {
+    res.status(400).send(e);
+  }
+});
+
 
 // ----- Activate listener ----- //
 app.listen(port, () => {
