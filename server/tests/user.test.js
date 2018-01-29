@@ -1,4 +1,4 @@
-// --- Mocha Server Test file
+// --- Mocha User Test file
 const expect = require('expect');
 const request = require('supertest');
 // const {ObjectID} = require('mongodb');
@@ -8,7 +8,7 @@ const {User} = require('./../models/user');
 const {
   users,
   populateUsers,
-} = require('./seed/seed');
+} = require('./seed/user.seed');
 
 // Test lifecycle code:
 // ======================

@@ -120,7 +120,19 @@ UserSchema.methods.removeToken = function (token) {
 };
 
 // ---------------- MODEL Methods ---------------- //
- UserSchema.statics.findByUserName = function (userName, password) {
+UserSchema.statics.findByRole = function (role, status) {
+  console.log(role);
+  console.log(status);
+  const User = this;
+  const users = User.find({status: status, roles: { $in: [role] } }).then((users) => {
+    if (!users) {
+      return Promise.reject();
+    }
+  return users;
+  });
+};
+
+UserSchema.statics.findByUserName = function (userName, password) {
   const User = this;
 
   return User.findOne({userName}).then((user) => {

@@ -10,7 +10,7 @@ const {
   locations,
   populateLocations,
 } = require('./seed/location.seed');
-const {users} = require('./seed/seed');
+const {users} = require('./seed/user.seed');
 
 // Test lifecycle code:
 // ======================
