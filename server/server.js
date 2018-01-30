@@ -62,13 +62,12 @@ app.delete('/users/me/token', authenticate, async (req, res) => {
 
 // --------------------- TEACHERS (SUBSET OF USERS) -------------------------- //
 // ----- GET /teachers/:status ----- //
-// This will switch between all, active, archived, or on hold
-// For now: %20, a blank space, will represent "all"
+// This will allow display limits based on status: all, active, archived, or on hold
+// For the status parameter: "all" runs blank query limitation
 app.get('/teachers/:status', async (req, res) => {
   try {
     const status = req.params.status;
-    if (status === ' ') {
-      console.log('Made it this far');
+    if (status === 'all') {
       const users = await User.find({}).where('roles').in(['teacher']);
       res.send({users});
     } else {
@@ -89,16 +88,27 @@ app.get('/location/teachers/:id.:status', async (req, res) => {
     const id = req.params.id;
     const status = req.params.status
     // validate id using isValid
+
   if (!ObjectID.isValid(id)) {
     return res.status(404).send(`${req.params.id} - ID not valid!`);
   }
     // *** Set up conditions for query here .....
     // a) vld/rtv location for array of teachers
     // b) status 
+
+    // *** Later refactor option may be to exclude this validation,
+    //     as it will be coming "from" a previous location route already validated.
     const location = await Location.findOne({_id: id});
-    const users = await User.find({status}).where('roles').in(['teacher']);
-    res.send(`Location: ${location.name} Users: ${users}`);
-    //res.send({users});
+
+    if (status === 'all') {
+      const users = await User.find({}).where('roles').in(['teacher']);
+      res.send({users});
+    } else {
+      const users = await User.find({status}).where('roles').in(['teacher']);
+      // const users = await User.findByRole('teacher', status);
+      
+      res.send({users});
+    }
   } catch (e) {
     res.status(400).send();
   }
