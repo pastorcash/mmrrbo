@@ -153,6 +153,7 @@ app.get('/location', async (req, res) => {
   }
 });
 
+
 // ------------------------------ STUDENTS ----------------------------------- //
 // ----- POST /student ----- //
 app.post('/student', async (req, res) => {
@@ -168,16 +169,55 @@ app.post('/student', async (req, res) => {
 });
 
 // ----- GET /student (LIST) ----- // 
-// *** Add optional location parameter
-app.get('/student', async (req, res) => {
+app.get('/student/:status', async (req, res) => {
   try {
-    const students = await Student.find({});
-    res.send({ students });
+    const status = req.params.status;
+    if (status === 'all') {
+      const students = await Student.find({});
+      res.send({students});
+    } else {
+      const students = await Student.find({status});
+      res.send({students});
+    }
   } catch (e) {
-    res.status(400).send(e);
+    res.status(400).send();
   }
 });
 
+// -------------------- STUDENTS assigned to LOCATION ------------------------ //
+// ----- GET /location/students/:status ----- //
+// This will limit by sts: all, active, archived, or on hold
+app.get('/location/students/:id.:status', async (req, res) => {
+  try {
+    const id = req.params.id;
+    const status = req.params.status
+    const assignedStudents = [];
+    // validate id using isValid
+
+  if (!ObjectID.isValid(id)) {
+    return res.status(404).send(`${req.params.id} - ID not valid!`);
+  }
+    // rtv location document
+    const location = await Location.findOne({_id: id});
+    try {
+      // now iterate through the array to rtv student info
+      for (let i=0; i <location.students.length; i++) {
+        const student = await Student.findOne({"_id" : location.students[i]});
+
+        if (status === 'all' || status === student.status) {
+          assignedStudents.push(student);
+        }  
+      }
+    } catch (e) {
+      res.status(400).send();  
+    } 
+        console.log(`Final array ${assignedStudents}`);
+    res.send(assignedStudents);
+
+  } catch (e) {
+    res.status(400).send();
+  }
+});
 
 // ----- Activate listener ----- //
 app.listen(port, () => {
