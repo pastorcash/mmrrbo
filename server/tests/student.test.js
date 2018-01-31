@@ -47,7 +47,7 @@ describe('/POST Students', () => {
 describe('GET /Student list', () => {
   it('Should return a list of all students', (done) => {
     request(app)
-      .get('/student')
+      .get('/student/all')
       .expect(200)
       .expect((res) => {
         expect(res.body.students.length).toBe(2);

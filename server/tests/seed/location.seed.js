@@ -1,8 +1,6 @@
 // Test lifecycle code:
 // =========================
 const {ObjectID} = require('mongodb');
-
-
 const {Location} = require('./../../models/location');
 
 // Create and seed two users

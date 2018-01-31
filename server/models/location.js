@@ -56,7 +56,7 @@ const LocationSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    require: false, 
+    required: false, 
     default: 'active',
   },
   admins: {
