@@ -1,3 +1,5 @@
+/* Navigation Bar
+-------------------------------------------------- */
 .navbar {
   background-color: #563d7c;
 }
@@ -50,7 +52,12 @@
   color: #ffffff;
 }
 
-/* Main overrides */
+/* Main overrides 
+-------------------------------------------------- */
+body {
+  font-family: Muli, sans-serif;
+},
+
 .main-color-bg {
   background-color: #563d7c ;
   border-color: #563d7c ;
