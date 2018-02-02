@@ -59,9 +59,24 @@ const StudentSchema = new mongoose.Schema({
     trim: true,
     default: 'active',
   },
+  initialLevel: {
+    type: Number,
+    required: false,
+    default: null,
+  },
   highestAchievedLevel: {
     type: Number,
     required: false,
+  },
+  initialWordCount: {
+    type: Number,
+    required: false,
+    default: 0,
+  },
+  highestAchievedWordCount: {
+    type: Number,
+    required: false,
+    default: 0,
   },
   notes: {
     type: String,
