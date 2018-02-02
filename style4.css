@@ -51,12 +51,16 @@
 .navbar .navbar-link:hover {
   color: #ffffff;
 }
+.navbar .navbar-text {
+  color: #fff;
+  font-style: italic;
+}
 
 /* Main overrides 
 -------------------------------------------------- */
 body {
   font-family: Muli, sans-serif;
-},
+}
 
 .main-color-bg {
   background-color: #563d7c ;
