@@ -120,6 +120,7 @@ UserSchema.methods.removeToken = function (token) {
   });
 };
 
+
 // ---------------- MODEL Methods ---------------- //
 UserSchema.statics.findByRole = function (role, status) {
   console.log(role);
@@ -189,8 +190,6 @@ UserSchema.statics.findByCredentials = function (email, password) {
   });
 };
 
-// UserSchema.statics.fullName
-
 UserSchema.pre('save', function (next) {
   const user = this;
   //location.updatedAt = new Date().getTime();
@@ -207,6 +206,17 @@ UserSchema.pre('save', function (next) {
   }
 });
 
+// --------------- VIRTUAL Methods ---------------- //
+StudentSchema.virtual('fullName').get(function () {
+  return this.firstName + ' ' + this.lastName;
+});
+
+StudentSchema.virtual('alphaName').get(function () {
+  return this.lastName + ', ' + this.firstName;
+});
+
+
+// ------------------ Interface ------------------- //
 const User = mongoose.model('User', UserSchema);
 UserSchema.plugin(mongooseUniqueValidator);
 

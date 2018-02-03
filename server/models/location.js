@@ -92,6 +92,7 @@ LocationSchema.methods.toJSON = function () {
 // ---------------- MODEL Methods ---------------- //
 
 
+// ------------------ Interface ------------------- //
 const Location = mongoose.model('Location', LocationSchema);
 LocationSchema.plugin(mongooseUniqueValidator);
 

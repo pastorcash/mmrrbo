@@ -106,17 +106,17 @@ StudentSchema.methods.toJSON = function () {
 
 // ---------------- MODEL Methods ----------------- //
 
+
 // --------------- VIRTUAL Methods ---------------- //
 StudentSchema.virtual('fullName').get(function() {
-  return this.name.first + ' ' + this.name.last;
+  return this.firstName + ' ' + this.lastName;
 });
 
 StudentSchema.virtual('alphaName').get(function() {
-  return this.name.last + ', ' + this.name.first;
+  return this.lastName + ', ' + this.firstName;
 });
 
 // ------------------ Interface ------------------- //
-
 const Student = mongoose.model('Student', StudentSchema);
 StudentSchema.plugin(mongooseUniqueValidator);
 

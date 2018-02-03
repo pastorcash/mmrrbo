@@ -79,6 +79,7 @@ CourseSchema.methods.toJSON = function () {
 // ---------------- MODEL Methods ---------------- //
 
 
+// ------------------ Interface ------------------- //
 const Course = mongoose.model('Course', CourseSchema);
 CourseSchema.plugin(mongooseUniqueValidator);
 
