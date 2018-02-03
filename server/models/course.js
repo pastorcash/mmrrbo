@@ -1,6 +1,9 @@
 // -- Create the "course" Model
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const mongooseUniqueValidator = require('mongoose-unique-validator');
 const _ = require('lodash');
+const { Student } = require('./student');
 
 const meetingTimesSchema = new mongoose.Schema({
   dayOfTheWeek: {
@@ -13,16 +16,18 @@ const meetingTimesSchema = new mongoose.Schema({
 
 const attendanceSchema = new mongoose.Schema({
   date: {
-    type: String,
+    type: Schema.Types.Date,
   },
   student: {
-    type: String,
+    type: Schema.Types.ObjectId,
+    ref: Student,
   },
   present: {
     type: Boolean,
   },
   recorded: {
     type: Date,
+    default: new Date().getTime(),
   },
 });
 
@@ -38,15 +43,18 @@ const CourseSchema = new mongoose.Schema({
   teachers: {
     type: Array,
   },
-  students: {
-    type: Array,
-  },
-  tempStudents: {
-    type: Array,
-  },
-  trialStudents: {
-    type: Array,
-  },  
+  students: [{
+    type: Schema.Types.ObjectId,
+    ref: Student,
+  }],
+  tempStudents: [{
+    type: Schema.Types.ObjectId,
+    ref: Student,
+  }],
+  trialStudents: [{
+    type: Schema.Types.ObjectId,
+    ref: Student,
+  }],
   status: {
     type: String,
     required: false, 
@@ -72,5 +80,6 @@ CourseSchema.methods.toJSON = function () {
 
 
 const Course = mongoose.model('Course', CourseSchema);
+CourseSchema.plugin(mongooseUniqueValidator);
 
 module.exports = {Course};

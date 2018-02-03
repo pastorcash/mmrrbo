@@ -1,6 +1,7 @@
 // --- Create the "user" model
 const mongoose = require('mongoose');
 const validator = require('validator');
+const mongooseUniqueValidator = require('mongoose-unique-validator');
 const jwt = require('jsonwebtoken');
 const _ = require('lodash');
 const bcrypt = require('bcryptjs');
@@ -77,12 +78,12 @@ const UserSchema = new mongoose.Schema({
     },
   }],
   createdAt: {
-    type: Number,
+    type: Date,
     required: false,
-    default: null,
+    default: new Date().getTime(),
   },
   updatedAt: {
-    type: Number,
+    type: Date,
     required: false,
     default: null,
   },
@@ -207,5 +208,6 @@ UserSchema.pre('save', function (next) {
 });
 
 const User = mongoose.model('User', UserSchema);
+UserSchema.plugin(mongooseUniqueValidator);
 
 module.exports = {User};

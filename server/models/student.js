@@ -1,5 +1,7 @@
 // -- Create the "student" Model
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const mongooseUniqueValidator = require('mongoose-unique-validator');
 // const validators = require('mongoose-validators');
 const _ = require('lodash');
 
@@ -29,17 +31,17 @@ const StudentSchema = new mongoose.Schema({
     default: null,
   },
   dateOfBirth: {
-    type: Number,
+    type: Schema.Types.Date,
     required: false,
     default: null,
   },
   registrationDate: {
-    type: Number,
+    type: Schema.Types.Date,
     required: false,
     default: null,
   },
   classStartDate: {
-    type: Number,
+    type: Schema.Types.Date,
     required: false,
     default: null,
   },
@@ -83,7 +85,7 @@ const StudentSchema = new mongoose.Schema({
     required: false,
   }, 
   createdAt: {
-    type: Number,
+    type: Schema.Types.Date,
     required: false,
     default: null,
   },
@@ -104,8 +106,18 @@ StudentSchema.methods.toJSON = function () {
 
 // ---------------- MODEL Methods ----------------- //
 
+// --------------- VIRTUAL Methods ---------------- //
+StudentSchema.virtual('fullName').get(function() {
+  return this.name.first + ' ' + this.name.last;
+});
+
+StudentSchema.virtual('alphaName').get(function() {
+  return this.name.last + ', ' + this.name.first;
+});
+
 // ------------------ Interface ------------------- //
 
 const Student = mongoose.model('Student', StudentSchema);
+StudentSchema.plugin(mongooseUniqueValidator);
 
 module.exports = {Student};
