@@ -8,6 +8,7 @@ const {User} = require('./../../models/user');
 // Create and seed two users
 const userOneId = new ObjectID();
 const userTwoId = new ObjectID();
+const userThreeId = new ObjectID();
 
 const users = [{
   _id: userOneId,
@@ -41,6 +42,22 @@ const users = [{
   }],
   createdAt:  new Date().getTime(),
   updatedAt:  new Date().getTime(),
+}, {
+  _id: userThreeId,
+  userName: 'pastorcash',
+  firstName: 'Cash',
+  lastName: 'Myers',   
+  email: 'cmyers880@gmail.com',
+  password: 'userThreePass',
+  roles: ['admin'],
+  employmentType: '1099',
+  status: 'active',
+  tokens: [{
+    access: 'auth',
+    token: jwt.sign({ _id: userThreeId, access: 'auth' }, process.env.JWT_SECRET).toString(),
+  }],
+  createdAt:  new Date().getTime(),
+  updatedAt:  new Date().getTime(),
 }];
 
 
@@ -49,8 +66,9 @@ const populateUsers = (done) => {
   User.remove({}).then(() => {
     var userOne = new User(users[0]).save();
     var userTwo = new User(users[1]).save();
+    var userThree = new User(users[2]).save();
 
-    return Promise.all([userOne, userTwo]);
+    return Promise.all([userOne, userTwo, userThree]);
   }).then(() => done());
 };
 

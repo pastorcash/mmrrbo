@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const mongooseUniqueValidator = require('mongoose-unique-validator');
 const _ = require('lodash');
 const { Student } = require('./student');
+const { User } = require('./user');
 
 const meetingTimesSchema = new mongoose.Schema({
   dayOfTheWeek: {
@@ -40,9 +41,10 @@ const CourseSchema = new mongoose.Schema({
     minlength: 3,
   },
   meetingTimes: [meetingTimesSchema],
-  teachers: {
-    type: Array,
-  },
+  teachers: [{
+    type: Schema.Types.ObjectId,
+    ref: User,
+  }],
   students: [{
     type: Schema.Types.ObjectId,
     ref: Student,
