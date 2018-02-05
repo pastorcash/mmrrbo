@@ -40,7 +40,7 @@ const courses = [{
 }];
 
 
-// This function gave me significant errors. 
+// This function (below) gave me significant problems. 
 // Mongoose seems to have a problem with the mix of Promises/Callbacks/ async-await.
 // After writing muliple versions of functions being pure or mixing the methods ... 
 // I had to settle on using Mongoose version 4.13.10 (not version 5) and 
@@ -51,8 +51,14 @@ const courses = [{
 // I would receive multiple timeouts or unhandle Promise reject calls. 
 // Pure callback chains would not get past the collection.remove () function
 // Pure promise calls would miss the rtv of data from the collection.find() call 
-// (and this included using Promise.all)
-
+// (and this included using Promise.all) 
+// If if did not put in the "done()", I would recieve a timeout error.
+// If I added it, then I would get the resolution overspecified error - mentioned above.
+// Mongoose version 5 would timeout during the collection.remove call reguardless of the logic I used.
+//
+// One last note ... I have a suspicion that this occurs only because of the beforeEach process.
+// I will test this out on the development (non-test) code and verify this suspicion.
+//
 const populateCourses = async (done) => {
   try {
     await Course.remove({}).exec();
@@ -79,45 +85,6 @@ const populateCourses = async (done) => {
     console.log('ERROR ', err);
   }
 };
-
-// const populateCourses = (done) => {
-//   console.log('PC: Starting ...');
-//   Course.remove({}).then(() => {
-//     console.log('PC: After delete');
-//     var teachers = User.find({ roles: { $in: ['teacher'] } })
-//       .exec()
-//       .then(() => {
-//         console.log('PC: After teacher rtv');
-//         if (!teachers) {
-//           courses[0].teachers = null;
-//           courses[1].teachers = null;
-//         } else {
-//           courses[0].teachers = teachers;
-//           courses[1].teachers = teachers;
-//         }
-//         console.log('PC: ', teachers);
-//         var courseOne = new Course(courses[0]).save().then(() => {
-//           console.log('PC - after 1st course: ', courseOne);
-//           var courseTwo = new Course(courses[1]).save().then(() => {
-//             console.log('PC - after 2nd course: ', courseTwo);
-//             done();
-//           });
-//         });
-//       }
-//       );
-
-//     // var courseOne = new Course(courses[0]).save();
-//     // var courseTwo = new Course(courses[1]).save();
-
-//     // return Promise.all([teachers, courseOne, courseTwo]);
-
-//   }).then(() => {
-//     console.log('PC: End of function');
-//     done();
-//   })
-//     .catch((e) => console.log(e));
-// };
-
 
 module.exports = {
   courses,
