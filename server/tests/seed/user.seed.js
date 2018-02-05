@@ -62,14 +62,16 @@ const users = [{
 
 
 // Now populate documents/data tables
-const populateUsers = (done) => {
-  User.remove({}).then(() => {
-    var userOne = new User(users[0]).save();
-    var userTwo = new User(users[1]).save();
-    var userThree = new User(users[2]).save();
-
-    return Promise.all([userOne, userTwo, userThree]);
-  }).then(() => done());
+const populateUsers = async () => {
+  try {
+  await User.remove({}); 
+  const userOne = await new User(users[0]).save();
+  const userTwo = await new User(users[1]).save();
+  const userThree = await new User(users[2]).save();
+  return;
+  } catch (err) {
+    console.log('Pop Users db Error: ', err);
+  }
 };
 
 module.exports = {

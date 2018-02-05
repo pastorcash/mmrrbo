@@ -1,9 +1,9 @@
 // Test lifecycle code:
 // =========================
-const {ObjectID} = require('mongodb');
+const { ObjectID } = require('mongodb');
 
 
-const {Student} = require('./../../models/student');
+const { Student } = require('./../../models/student');
 
 // Create and seed two users
 const studentOneId = new ObjectID();
@@ -42,14 +42,16 @@ const students = [{
 
 
 // Now populate documents/data tables
-const populateStudents = (done) => {
-  Student.remove({}).then(() => {
-    var studentOne = new Student(students[0]).save();
-    var studentTwo = new Student(students[1]).save();
-
-    return Promise.all([studentOne, studentTwo]);
-  }).then(() => done());
+const populateStudents = async () => {
+  try {
+    await Student.remove({});
+    const studentOne = await new Student(students[0]).save();
+    const studentTwo = await new Student(students[1]).save();
+  } catch (err) {
+    console.log('Pop Students db Error: ', err);
+  }
 };
+
 
 module.exports = {
   students,

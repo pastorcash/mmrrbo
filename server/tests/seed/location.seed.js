@@ -1,7 +1,7 @@
 // Test lifecycle code:
 // =========================
-const {ObjectID} = require('mongodb');
-const {Location} = require('./../../models/location');
+const { ObjectID } = require('mongodb');
+const { Location } = require('./../../models/location');
 
 // Create and seed two users
 const locationOneId = new ObjectID();
@@ -35,13 +35,14 @@ const locations = [{
 
 
 // Now populate documents/data tables
-const populateLocations = (done) => {
-  Location.remove({}).then(() => {
-    var locationOne = new Location(locations[0]).save();
-    var locationTwo = new Location(locations[1]).save();
-
-    return Promise.all([locationOne, locationTwo]);
-  }).then(() => done());
+const populateLocations = async () => {
+  try {
+    await Location.remove({});
+    var locationOne = await new Location(locations[0]).save();
+    var locationTwo = await new Location(locations[1]).save();
+  } catch (err) {
+    console.log('Pop Locations db Error: ', err);
+  }
 };
 
 module.exports = {

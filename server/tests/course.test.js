@@ -19,7 +19,7 @@ const {users} = require('./seed/user.seed');
 //  before EACH execution of EACH Test.
 beforeEach(populateCourses);
 
-describe('Populate Database', () => {
+describe('Populate Database', async function() {
   it('Should put data into the test database', (done) => {
     return done();
   });
