@@ -9,6 +9,7 @@ const {mongoose} = require('./db/mongoose');
 const {User} = require('./models/user');
 const {Location} = require('./models/location');
 const {Student} = require('./models/student');
+const { Course } = require('./models/course');
 const {authenticate} = require('./middleware/authenticate');
 
 const app = express();
@@ -213,6 +214,41 @@ app.get('/location/students/:id.:status', async (req, res) => {
     } 
         console.log(`Final array ${assignedStudents}`);
     res.send(assignedStudents);
+
+  } catch (e) {
+    res.status(400).send();
+  }
+});
+
+// -------------------- COURSES assigned to LOCATION ------------------------ //
+// ----- GET /location/courses/:status ----- //
+// This will limit by sts: all, active, archived, or on hold
+app.get('/location/students/:id.:status', async (req, res) => {
+  try {
+    const id = req.params.id;
+    const status = req.params.status
+    const assignedCourses = [];
+    // validate id using isValid
+
+    if (!ObjectID.isValid(id)) {
+      return res.status(404).send(`${req.params.id} - ID not valid!`);
+    }
+    // rtv location document
+    const location = await Location.findOne({ _id: id });
+    try {
+      // now iterate through the array to rtv course info
+      for (let i = 0; i < location.courses.length; i++) {
+        const course = await Course.findOne({ "_id": location.courses[i] });
+
+        if (status === 'all' || status === course.status) {
+          assignedCourses.push(course);
+        }
+      }
+    } catch (e) {
+      res.status(400).send();
+    }
+    console.log(`Final array ${assignedCourses}`);
+    res.send(assignedCourses);
 
   } catch (e) {
     res.status(400).send();

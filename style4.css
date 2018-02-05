@@ -1,3 +1,5 @@
+/* Navigation Bar
+-------------------------------------------------- */
 .navbar {
   background-color: #563d7c;
 }
@@ -49,8 +51,17 @@
 .navbar .navbar-link:hover {
   color: #ffffff;
 }
+.navbar .navbar-text {
+  color: #fff;
+  font-style: italic;
+}
 
-/* Main overrides */
+/* Main overrides 
+-------------------------------------------------- */
+body {
+  font-family: Muli, sans-serif;
+}
+
 .main-color-bg {
   background-color: #563d7c ;
   border-color: #563d7c ;

@@ -1,6 +1,11 @@
 // -- Create the "location" Model
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const mongooseUniqueValidator = require('mongoose-unique-validator');
 const _ = require('lodash');
+const { User } = require('./user');
+const { Student } = require('./student');
+const { Course } = require('./course');
 
 const LocationSchema = new mongoose.Schema({
   name: {
@@ -51,26 +56,26 @@ const LocationSchema = new mongoose.Schema({
     default: null,
   },
   createdAt: {
-    type: Number,
+    type: Schema.Types.Date,
     default: null,
   },
   status: {
     type: String,
-    required: false, 
+    required: false,
     default: 'active',
   },
-  admins: {
-    type: Array,
-  },
-  teachers: {
-    type: Array,
-  },
-  students: {
-    type: Array,
-  },
-  courses: {
-    type: Array,
-  },
+  admins: [
+    { type: Schema.Types.ObjectId, ref: User }
+  ],
+  teachers: [
+    { type: Schema.Types.ObjectId, ref: User }
+  ],
+  students: [
+    { type: Schema.Types.ObjectId, ref: Student }
+  ],
+  courses: [
+    { type: Schema.Types.ObjectId, ref: Course }
+  ],
   contacts: {
     type: Object,
   },
@@ -87,6 +92,8 @@ LocationSchema.methods.toJSON = function () {
 // ---------------- MODEL Methods ---------------- //
 
 
+// ------------------ Interface ------------------- //
 const Location = mongoose.model('Location', LocationSchema);
+LocationSchema.plugin(mongooseUniqueValidator);
 
-module.exports = {Location};
+module.exports = { Location };
