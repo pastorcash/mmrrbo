@@ -81,7 +81,10 @@ body {
   margin-top: 1em;
 }
 
-
+#tlcards .badge {
+  font-size: medium;
+  color: #fff;
+}
 /* Sticky footer styles
 -------------------------------------------------- */
 html {

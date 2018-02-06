@@ -48,7 +48,7 @@
       <nav class="navbar">
         <span class="navbar-text">Super Admin</span>
       </nav>
-      
+
       <ul class="navbar-nav mt-2 mt-lg-0">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-expanded="false">
@@ -82,8 +82,141 @@
   <!-- Beginning of the main page -->
   <div class="container">
 
+    <!-- Top Level Cards -->
+    <div class="row" id="tlcards">
+      <!-- Card 1: Locations Summary -->
+      <div class="col-md-3">
+        <div class="card-header main-color-alt" style="font-weight: bold">
+          <i class="fa fa-building" aria-hidden="true" style="font-size: xx-large"></i>
+          Locations Summary
+        </div>
+        <div class="card-body bg-light">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <i class="fa fa-toggle-on" aria-hidden="true"></i>
+              Active
+              <span class="badge bg-primary" style="float: right">4</span>
+            </li>
+            <li class="list-group-item">
+              <i class="fa fa-toggle-off" aria-hidden="true"></i>
+              Archived
+              <span class="badge bg-secondary" style="float: right">2</span>
+            </li>
+            <li class="list-group-item">
+              <i class="fa fa-signal" aria-hidden="true"></i>
+              Total
+              <span class="badge bg-success" style="float: right">6</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Card 2: Students Summary -->
+      <div class="col-md-3">
+        <div class="card-header main-color-alt" style="font-weight: bold">
+          <i class="fa fa-child" aria-hidden="true" style="font-size: xx-large"></i>
+          Students Summary
+        </div>
+        <div class="card-body bg-light">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <i class="fa fa-toggle-on" aria-hidden="true"></i>
+              Active
+              <span class="badge bg-primary" style="float: right">70</span>
+            </li>
+            <li class="list-group-item">
+              <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+              Graduated
+              <span class="badge badge-dark" style="float: right">87</span>
+            </li>
+            <li class="list-group-item">
+              <i class="fa fa-toggle-off" aria-hidden="true"></i>
+              Temp/Trial
+              <span class="badge bg-secondary" style="float: right">38</span>
+            </li>
+            <li class="list-group-item">
+              <i class="fa fa-pause" aria-hidden="true"></i>
+              Wait List
+              <span class="badge bg-warning" style="float: right">1</span>
+            </li>
+            <li class="list-group-item">
+              <i class="fa fa-signal" aria-hidden="true"></i>
+              Total
+              <span class="badge bg-success" style="float: right">196</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Card 3: Teachers Summary -->
+      <div class="col-md-3">
+        <div class="card-header main-color-alt" style="font-weight: bold">
+          <i class="fa fa-user" aria-hidden="true" style="font-size: xx-large"></i>
+          Teachers Summary
+        </div>
+        <div class="card-body bg-light">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <i class="fa fa-toggle-on" aria-hidden="true"></i>
+              Active
+              <span class="badge bg-primary" style="float: right">9</span>
+            </li>
+            <li class="list-group-item">
+              <i class="fa fa-toggle-off" aria-hidden="true"></i>
+              Archived
+              <span class="badge bg-secondary" style="float: right">35</span>
+            </li>
+            <li class="list-group-item">
+              <i class="fa fa-signal" aria-hidden="true"></i>
+              Total
+              <span class="badge bg-success" style="float: right">44</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Card 4: Users Summary -->
+      <div class="col-md-3">
+        <div class="card-header main-color-alt" style="font-weight: bold">
+          <i class="fa fa-users" aria-hidden="true" style="font-size: xx-large"></i>
+          Users Summary
+        </div>
+        <div class="card-body bg-light">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <i class="fa fa-angle-double-up" aria-hidden="true"></i>
+              Super Admins
+              <span class="badge bg-danger" style="float: right">0</span>
+            </li>
+            <li class="list-group-item">
+              <i class="fa fa-angle-up" aria-hidden="true"></i>
+              Admins
+              <span class="badge bg-primary" style="float: right">48</span>
+            </li>
+            <li class="list-group-item">
+              <i class="fa fa-user" aria-hidden="true"></i>
+              Teachers
+              <span class="badge bg-info" style="float: right">44</span>
+            </li>
+            <li class="list-group-item">
+              <i class="fa fa-male" aria-hidden="true"></i>
+              <i class="fa fa-female" aria-hidden="true"></i>
+              Parents
+              <span class="badge bg-warning" style="float: right">0</span>
+            </li>
+            <li class="list-group-item">
+              <i class="fa fa-signal" aria-hidden="true"></i>
+              Total
+              <span class="badge bg-success" style="float: right">48</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Location Info & Graph -->
     <div class="row">
-      <div class="col-md-4 col-sm-4">
+      <div class="col-md-4">
         <div class="card-header main-color-active">
           <i class="fa fa-building" aria-hidden="true"></i>
           Main Location</div>
@@ -100,14 +233,15 @@
               <span class="badge badge-dark" style="float: right">26</span>
             </li>
             <li class="list-group-item">
-              <i class="fa fa-book" aria-hidden="true"></i> Classes
+              <i class="fa fa-book" aria-hidden="true"></i>
+              Classes
               <span class="badge badge-dark" style="float: right">7</span>
             </li>
           </ul>
         </div>
       </div>
 
-      <div class="col-md-8 col-sm-8">
+      <div class="col-md-8">
         <div class="card-header main-color-active">Location Results</div>
         <div class="card-body bg-light">
           Graph results show here
@@ -116,8 +250,9 @@
       </div>
     </div>
 
+    <!-- Site 1 Location Info & Graph -->
     <div class="row">
-      <div class="col-md-4 col-sm-4">
+      <div class="col-md-4">
         <div class="card-header main-color-alt">
           <i class="fa fa-graduation-cap" aria-hidden="true"></i>
           School 1 Info</div>
@@ -140,7 +275,7 @@
         </div>
       </div>
 
-      <div class="col-md-8 col-sm-8">
+      <div class="col-md-8">
         <div class="card-header main-color-alt">
           School Results</div>
         <div class="card-body bg-light">
@@ -150,8 +285,9 @@
       </div>
     </div>
 
+    <!-- Site 2 Location Info & Graph -->
     <div class="row">
-      <div class="col-md-4 col-sm-4">
+      <div class="col-md-4">
         <div class="card-header main-color-alt">
           <i class="fa fa-graduation-cap" aria-hidden="true"></i>
           School 2 Info</div>
@@ -173,7 +309,8 @@
         </div>
       </div>
 
-      <div class="col-md-8 col-sm-8">
+      <!-- Footer -->
+      <div class="col-md-8">
         <div class="card-header main-color-alt">School Results</div>
         <div class="card-body bg-light">
           Graph results show here
@@ -188,7 +325,8 @@
   <footer class="footer">
     <div class="container">
       <p>
-        <small><i class="fa fa-copyright" aria-hidden="true"></i>
+        <small>
+          <i class="fa fa-copyright" aria-hidden="true"></i>
           2018 Mrs. Myers Reading Room.
           <span style="float: right">Developed by CMC Technologies</span>
         </small>

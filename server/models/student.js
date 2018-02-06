@@ -84,6 +84,10 @@ const StudentSchema = new mongoose.Schema({
     type: String,
     required: false,
   }, 
+  enrolled: {
+    type: Boolean,
+    default: false,
+  },
   createdAt: {
     type: Schema.Types.Date,
     required: false,
