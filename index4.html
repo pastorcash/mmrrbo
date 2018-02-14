@@ -13,6 +13,9 @@
   <!-- Link for Font Awesome Icons -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+  <!-- Link for main font: Mult -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Muli|Open+Sans" rel="stylesheet">
+
   <!-- Custom styles for this application -->
   <link rel="stylesheet" href="style4.css">
 
@@ -39,10 +42,13 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="locations.html">Locations</a>
+          <a class="nav-link" href="assets\location\location.html">Locations</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="teachers.html">Teachers</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="students.html">Students</a>
         </li>
       </ul>
       <nav class="navbar">
@@ -86,8 +92,8 @@
     <div class="row" id="tlcards">
       <!-- Card 1: Locations Summary -->
       <div class="col-md-3">
-        <div class="card-header main-color-alt" style="font-weight: bold">
-          <i class="fa fa-building" aria-hidden="true" style="font-size: xx-large"></i>
+        <div class="card-header main-color-alt text-warning">
+          <i class="fa fa-building" aria-hidden="true"></i>
           Locations Summary
         </div>
         <div class="card-body bg-light">
@@ -95,17 +101,17 @@
             <li class="list-group-item">
               <i class="fa fa-toggle-on" aria-hidden="true"></i>
               Active
-              <span class="badge bg-primary" style="float: right">4</span>
+              <span class="badge bg-primary">4</span>
             </li>
             <li class="list-group-item">
               <i class="fa fa-toggle-off" aria-hidden="true"></i>
               Archived
-              <span class="badge bg-secondary" style="float: right">2</span>
+              <span class="badge bg-secondary">2</span>
             </li>
             <li class="list-group-item">
               <i class="fa fa-signal" aria-hidden="true"></i>
               Total
-              <span class="badge bg-success" style="float: right">6</span>
+              <span class="badge bg-success">6</span>
             </li>
           </ul>
         </div>
@@ -113,8 +119,8 @@
 
       <!-- Card 2: Students Summary -->
       <div class="col-md-3">
-        <div class="card-header main-color-alt" style="font-weight: bold">
-          <i class="fa fa-child" aria-hidden="true" style="font-size: xx-large"></i>
+        <div class="card-header main-color-alt text-warning">
+          <i class="fa fa-child" aria-hidden="true"></i>
           Students Summary
         </div>
         <div class="card-body bg-light">
@@ -122,27 +128,27 @@
             <li class="list-group-item">
               <i class="fa fa-toggle-on" aria-hidden="true"></i>
               Active
-              <span class="badge bg-primary" style="float: right">70</span>
+              <span class="badge bg-primary">70</span>
             </li>
             <li class="list-group-item">
               <i class="fa fa-graduation-cap" aria-hidden="true"></i>
               Graduated
-              <span class="badge badge-dark" style="float: right">87</span>
+              <span class="badge badge-dark">87</span>
             </li>
             <li class="list-group-item">
               <i class="fa fa-toggle-off" aria-hidden="true"></i>
               Temp/Trial
-              <span class="badge bg-secondary" style="float: right">38</span>
+              <span class="badge bg-secondary">38</span>
             </li>
             <li class="list-group-item">
               <i class="fa fa-pause" aria-hidden="true"></i>
               Wait List
-              <span class="badge bg-warning" style="float: right">1</span>
+              <span class="badge bg-warning">1</span>
             </li>
             <li class="list-group-item">
               <i class="fa fa-signal" aria-hidden="true"></i>
               Total
-              <span class="badge bg-success" style="float: right">196</span>
+              <span class="badge bg-success">196</span>
             </li>
           </ul>
         </div>
@@ -150,8 +156,8 @@
 
       <!-- Card 3: Teachers Summary -->
       <div class="col-md-3">
-        <div class="card-header main-color-alt" style="font-weight: bold">
-          <i class="fa fa-user" aria-hidden="true" style="font-size: xx-large"></i>
+        <div class="card-header main-color-alt">
+          <i class="fa fa-user" aria-hidden="true"></i>
           Teachers Summary
         </div>
         <div class="card-body bg-light">
@@ -164,12 +170,12 @@
             <li class="list-group-item">
               <i class="fa fa-toggle-off" aria-hidden="true"></i>
               Archived
-              <span class="badge bg-secondary" style="float: right">35</span>
+              <span class="badge bg-secondary">35</span>
             </li>
             <li class="list-group-item">
               <i class="fa fa-signal" aria-hidden="true"></i>
               Total
-              <span class="badge bg-success" style="float: right">44</span>
+              <span class="badge bg-success">44</span>
             </li>
           </ul>
         </div>
@@ -177,8 +183,8 @@
 
       <!-- Card 4: Users Summary -->
       <div class="col-md-3">
-        <div class="card-header main-color-alt" style="font-weight: bold">
-          <i class="fa fa-users" aria-hidden="true" style="font-size: xx-large"></i>
+        <div class="card-header main-color-alt" style="color: #ffffff">
+          <i class="fa fa-users" aria-hidden="true"></i>
           Users Summary
         </div>
         <div class="card-body bg-light">
@@ -186,28 +192,28 @@
             <li class="list-group-item">
               <i class="fa fa-angle-double-up" aria-hidden="true"></i>
               Super Admins
-              <span class="badge bg-danger" style="float: right">0</span>
+              <span class="badge bg-danger">0</span>
             </li>
             <li class="list-group-item">
               <i class="fa fa-angle-up" aria-hidden="true"></i>
               Admins
-              <span class="badge bg-primary" style="float: right">48</span>
+              <span class="badge bg-primary">48</span>
             </li>
             <li class="list-group-item">
               <i class="fa fa-user" aria-hidden="true"></i>
               Teachers
-              <span class="badge bg-info" style="float: right">44</span>
+              <span class="badge bg-info">44</span>
             </li>
             <li class="list-group-item">
               <i class="fa fa-male" aria-hidden="true"></i>
               <i class="fa fa-female" aria-hidden="true"></i>
               Parents
-              <span class="badge bg-warning" style="float: right">0</span>
+              <span class="badge bg-warning">0</span>
             </li>
             <li class="list-group-item">
               <i class="fa fa-signal" aria-hidden="true"></i>
               Total
-              <span class="badge bg-success" style="float: right">48</span>
+              <span class="badge bg-success">48</span>
             </li>
           </ul>
         </div>
@@ -225,17 +231,17 @@
             <li class="list-group-item">
               <i class="fa fa-user" aria-hidden="true"></i>
               Teachers
-              <span class="badge badge-dark" style="float: right">6</span>
+              <span class="badge badge-dark">6</span>
             </li>
             <li class="list-group-item">
               <i class="fa fa-child" aria-hidden="true"></i>
               Students
-              <span class="badge badge-dark" style="float: right">26</span>
+              <span class="badge badge-dark">26</span>
             </li>
             <li class="list-group-item">
               <i class="fa fa-book" aria-hidden="true"></i>
               Classes
-              <span class="badge badge-dark" style="float: right">7</span>
+              <span class="badge badge-dark">7</span>
             </li>
           </ul>
         </div>
@@ -261,16 +267,16 @@
             <li class="list-group-item">
               <i class="fa fa-user" aria-hidden="true"></i>
               Teachers
-              <span class="badge badge-dark" style="float: right">2</span>
+              <span class="badge badge-dark">2</span>
             </li>
             <li class="list-group-item">
               <i class="fa fa-child" aria-hidden="true"></i>
               Students
-              <span class="badge badge-dark" style="float: right">14</li>
+              <span class="badge badge-dark">14</li>
             <li class="list-group-item">
               <i class="fa fa-book" aria-hidden="true"></i>
               Classes
-              <span class="badge badge-dark" style="float: right">2</li>
+              <span class="badge badge-dark">2</li>
           </ul>
         </div>
       </div>
@@ -296,15 +302,15 @@
             <li class="list-group-item">
               <i class="fa fa-user" aria-hidden="true"></i>
               Teachers
-              <span class="badge badge-dark" style="float: right">2</li>
+              <span class="badge badge-dark">2</li>
             <li class="list-group-item">
               <i class="fa fa-child" aria-hidden="true"></i>
               Students
-              <span class="badge badge-dark" style="float: right">14</li>
+              <span class="badge badge-dark">14</li>
             <li class="list-group-item">
               <i class="fa fa-book" aria-hidden="true"></i>
               Classes
-              <span class="badge badge-dark" style="float: right">2</li>
+              <span class="badge badge-dark">2</li>
           </ul>
         </div>
       </div>

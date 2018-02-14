@@ -58,8 +58,14 @@
 
 /* Main overrides 
 -------------------------------------------------- */
+html { /* Sticky footer styles */
+  position: relative;
+  min-height: 100%;
+}
+
 body {
-  font-family: Muli, sans-serif;
+  font-family: 'Muli', 'Open Sans', 'Montserrat', sans-serif;
+  margin-bottom: 30px; /* Margin bottom by footer height */
 }
 
 .main-color-bg {
@@ -81,19 +87,32 @@ body {
   margin-top: 1em;
 }
 
+.card-body {
+  margin-bottom: 1.5em;
+}
+
+.badge {
+  float: right;
+}
+
+#tlcards .card-header {
+  font-weight: bold !important;
+  font-size: medium;
+  color: ;
+}
+
+#tlcards .card-header .fa {
+  font-size: xx-large;
+  color: #333;
+}
+
 #tlcards .badge {
   font-size: medium;
   color: #fff;
-}
+} 
+
 /* Sticky footer styles
 -------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
-}
-body {
-  margin-bottom: 30px; /* Margin bottom by footer height */
-}
 .footer {
   position: absolute;
   bottom: 0;
