@@ -1,60 +1,4 @@
-/* Navigation Bar
--------------------------------------------------- */
-.navbar {
-  background-color: #563d7c;
-}
-.navbar .navbar-brand {
-  color: #fff;
-}
-.navbar .navbar-brand:hover,
-.navbar .navbar-brand:focus {
-  color: #ffffff;
-}
-.navbar .navbar-text {
-  color: #c2ace5;
-}
-.navbar .navbar-nav .nav-link {
-  color: #c2ace5;
-  border-radius: .25rem;
-  margin: 0 0.25em;
-}
-.navbar .navbar-nav .nav-link:not(.disabled):hover,
-.navbar .navbar-nav .nav-link:not(.disabled):focus {
-  color: #ffffff;
-}
-.navbar .navbar-nav .nav-item.active .nav-link,
-.navbar .navbar-nav .nav-item.active .nav-link:hover,
-.navbar .navbar-nav .nav-item.active .nav-link:focus,
-.navbar .navbar-nav .nav-item.show .nav-link,
-.navbar .navbar-nav .nav-item.show .nav-link:hover,
-.navbar .navbar-nav .nav-item.show .nav-link:focus {
-  color: #ffffff;
-  background-color: #8e44ad;
-}
-.navbar .navbar-toggle {
-  border-color: #8e44ad;
-}
-.navbar .navbar-toggle:hover,
-.navbar .navbar-toggle:focus {
-  background-color: #8e44ad;
-}
-.navbar .navbar-toggle .navbar-toggler-icon {
-  color: #c2ace5;
-}
-.navbar .navbar-collapse,
-.navbar .navbar-form {
-  border-color: #c2ace5;
-}
-.navbar .navbar-link {
-  color: #c2ace5;
-}
-.navbar .navbar-link:hover {
-  color: #ffffff;
-}
-.navbar .navbar-text {
-  color: #fff;
-  font-style: italic;
-}
+@import 'navbar.css';
 
 /* Main overrides 
 -------------------------------------------------- */
@@ -98,7 +42,6 @@ body {
 #tlcards .card-header {
   font-weight: bold !important;
   font-size: medium;
-  color: ;
 }
 
 #tlcards .card-header .fa {

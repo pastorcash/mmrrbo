@@ -33,6 +33,7 @@
     "validator": "^9.2.0"
   },
   "devDependencies": {
+    "@angular/cli": "^1.6.8",
     "eslint": "^4.15.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
